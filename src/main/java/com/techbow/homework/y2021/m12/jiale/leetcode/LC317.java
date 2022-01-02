@@ -13,8 +13,8 @@ public class LC317 {
         int numC = grid[0].length;
         int[][] cost = new int[numR][numC];
 
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
+        for (int i = 0; i < numR; i++) {
+            for (int j = 0; j < numC; j++) {
                 if (grid[i][j] == 1) {
                     bfs(grid, cost, i, j);
                 }
@@ -22,8 +22,8 @@ public class LC317 {
         }
 
         int minDistance = Integer.MAX_VALUE;
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
+        for (int i = 0; i < numR; i++) {
+            for (int j = 0; j < numC; j++) {
                 if (grid[i][j] == 0 && cost[i][j] != 0){
                     minDistance = Math.min(cost[i][j], minDistance);
                 }
@@ -37,7 +37,7 @@ public class LC317 {
         int numC = grid[0].length;
         Queue<Integer> queue = new LinkedList<>();
         queue.offer(i * numC + j);
-        int minLen = 0;
+        int minLen = 1;
         boolean[][] visited = new boolean[numR][numC];
         while (!queue.isEmpty()) {
             int size = queue.size();
@@ -52,10 +52,31 @@ public class LC317 {
                         int next = nextR * numC + nextC;
                         queue.offer(next);
                         visited[nextR][nextC] = true;
+                        cost[nextR][nextC] += minLen;
                     }
                 }
             }
             minLen++;
         }
+
+        /**
+         * for the following condition: we should set the unaccessiable node to 2 at the end of each bfs
+         * 0 2 1
+         * 1 0 2
+         * 0 1 0
+         */
+        for (int r = 0; r < numR; r++) {
+            for (int c = 0; c < numC; c++) {
+                if (!visited[r][c]) {
+                    grid[r][c] = 2;
+                }
+            }
+        }
+
+    }
+
+    public static void main(String[] args) {
+        int[][] input = {{0, 2, 1}, {1, 0, 2},{0,1,0}};
+        System.out.println(new LC317().shortestDistance(input));
     }
 }
