@@ -29,6 +29,7 @@ public class LC126 {
         Queue<String> queue = new LinkedList<>();
         Map<String, List<String>> graph = new HashMap<>();
         queue.offer(beginWord);
+        // if the flag is true, end after finishing this level
         boolean flag = false;
         while (!queue.isEmpty()) {
             Set<String> visitedThisLev = new HashSet<>();
@@ -76,6 +77,15 @@ public class LC126 {
         return res;
     }
 
+    /**
+     * 在某一层还原路径 recover path from graph
+     * O(V+E) + O(L) L is the length of the shortest path. O(L) is the cost of the deep copy
+     * @param res
+     * @param one
+     * @param cur
+     * @param end
+     * @param graph
+     */
     private void search(List<List<String>> res, List<String> one, String cur, String end, Map<String, List<String>> graph) {
         if (cur.equals(end)) {
             List<String> copy = new LinkedList<>(one);
