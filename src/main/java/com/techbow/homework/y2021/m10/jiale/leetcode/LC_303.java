@@ -1,9 +1,5 @@
 package com.techbow.homework.y2021.m10.jiale.leetcode;
 
-import com.sun.tools.javac.util.ArrayUtils;
-
-import java.util.Arrays;
-
 /**
  * Given an integer array nums, handle multiple queries of the following type:
  * <p>
