@@ -75,7 +75,6 @@ public class LC78 {
     private void dfs2(int[] nums, int index, List<Integer> sol, List<List<Integer>> res) {
         List<Integer> copy = new ArrayList<>(sol);
         res.add(copy);
-
         for (int i = index; i < nums.length; i++) {
             sol.add(nums[i]);
             dfs(nums, i + 1, sol, res);
