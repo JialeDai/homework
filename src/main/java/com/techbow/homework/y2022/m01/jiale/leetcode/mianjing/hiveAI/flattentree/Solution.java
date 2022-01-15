@@ -1,5 +1,6 @@
 package com.techbow.homework.y2022.m01.jiale.leetcode.mianjing.hiveAI.flattentree;
 
+import com.techbow.homework.y2021.m09.jiale.common.ListNode;
 import com.techbow.homework.y2021.m09.jiale.common.TreeNode;
 
 /**
@@ -53,8 +54,22 @@ import com.techbow.homework.y2021.m09.jiale.common.TreeNode;
  * TreeNode l = inorder(root.left);
  * return l;
  */
+// listNode1 -> listNode2 -> listNode3 -> listNode4 -> listNode5 -> null
 public class Solution {
+    private TreeNode prev = null;
     public void flatten(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        // do sth
+        if (prev != null) prev.right = root;
+        root.left = prev;
+        prev = root;
+        flatten(root.left);
+        flatten(root.right);
+    }
 
+    public static void main(String[] args) {
+        new Solution().flatten(new TreeNode(1));
     }
 }
