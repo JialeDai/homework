@@ -1,4 +1,4 @@
-package com.techbow.homework.y2022.m01.jiale.leetcode.permuation;
+package com.techbow.homework.y2022.m01.jiale.leetcode.mianjing.hiveAI.permuation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
